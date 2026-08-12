@@ -12,16 +12,9 @@ import {
   Bot,
   Plug,
   Settings,
-  type LucideIcon,
 } from "lucide-react";
 
-export interface NavItem {
-  label: string;
-  to: string;
-  icon: LucideIcon;
-}
-
-export const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS = [
   { label: "Dashboard", to: "/dashboard", icon: LayoutDashboard },
   { label: "BOOST", to: "/boost", icon: Sparkles },
   { label: "Clients", to: "/clients", icon: Users },
@@ -35,4 +28,6 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Agents", to: "/agents", icon: Bot },
   { label: "Integrations", to: "/integrations", icon: Plug },
   { label: "Settings", to: "/settings", icon: Settings },
-];
+] as const;
+
+export type NavItem = (typeof NAV_ITEMS)[number];
