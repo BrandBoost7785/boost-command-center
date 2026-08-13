@@ -6,7 +6,7 @@ export function PageHeader({
   actions,
 }: {
   title: string;
-  description?: string;
+  description?: string | undefined;
   actions?: ReactNode;
 }) {
   return (
@@ -29,7 +29,7 @@ export function EmptyState({
   action,
 }: {
   title: string;
-  description?: string;
+  description?: string | undefined;
   icon?: ReactNode;
   action?: ReactNode;
 }) {
@@ -50,7 +50,7 @@ export function ErrorState({
   onRetry,
 }: {
   message: string;
-  onRetry?: () => void;
+  onRetry?: (() => void) | undefined;
 }) {
   return (
     <div className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3">
