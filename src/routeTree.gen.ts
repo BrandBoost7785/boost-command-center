@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAgentsRouteImport } from './routes/_authenticated/agents'
+import { Route as AuthenticatedBoostRouteImport } from './routes/_authenticated/boost'
 import { Route as AuthenticatedBusinessesRouteImport } from './routes/_authenticated/businesses'
 import { Route as AuthenticatedClientsRouteImport } from './routes/_authenticated/clients'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
@@ -42,6 +43,11 @@ const AuthRoute = AuthRouteImport.update({
 const AuthenticatedAgentsRoute = AuthenticatedAgentsRouteImport.update({
   id: '/agents',
   path: '/agents',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedBoostRoute = AuthenticatedBoostRouteImport.update({
+  id: '/boost',
+  path: '/boost',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedBusinessesRoute = AuthenticatedBusinessesRouteImport.update({
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/agents': typeof AuthenticatedAgentsRoute
+  '/boost': typeof AuthenticatedBoostRoute
   '/businesses': typeof AuthenticatedBusinessesRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/agents': typeof AuthenticatedAgentsRoute
+  '/boost': typeof AuthenticatedBoostRoute
   '/businesses': typeof AuthenticatedBusinessesRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -139,6 +147,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/agents': typeof AuthenticatedAgentsRoute
+  '/_authenticated/boost': typeof AuthenticatedBoostRoute
   '/_authenticated/businesses': typeof AuthenticatedBusinessesRoute
   '/_authenticated/clients': typeof AuthenticatedClientsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/agents'
+    | '/boost'
     | '/businesses'
     | '/clients'
     | '/dashboard'
@@ -173,6 +183,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/agents'
+    | '/boost'
     | '/businesses'
     | '/clients'
     | '/dashboard'
@@ -190,6 +201,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/agents'
+    | '/_authenticated/boost'
     | '/_authenticated/businesses'
     | '/_authenticated/clients'
     | '/_authenticated/dashboard'
@@ -237,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/agents'
       fullPath: '/agents'
       preLoaderRoute: typeof AuthenticatedAgentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/boost': {
+      id: '/_authenticated/boost'
+      path: '/boost'
+      fullPath: '/boost'
+      preLoaderRoute: typeof AuthenticatedBoostRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/businesses': {
@@ -321,6 +340,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAgentsRoute: typeof AuthenticatedAgentsRoute
+  AuthenticatedBoostRoute: typeof AuthenticatedBoostRoute
   AuthenticatedBusinessesRoute: typeof AuthenticatedBusinessesRoute
   AuthenticatedClientsRoute: typeof AuthenticatedClientsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
@@ -336,6 +356,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAgentsRoute: AuthenticatedAgentsRoute,
+  AuthenticatedBoostRoute: AuthenticatedBoostRoute,
   AuthenticatedBusinessesRoute: AuthenticatedBusinessesRoute,
   AuthenticatedClientsRoute: AuthenticatedClientsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
