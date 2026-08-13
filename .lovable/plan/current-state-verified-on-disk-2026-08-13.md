@@ -1,4 +1,4 @@
-# BOOST AI — Foundation Completion
+BOOST AI — Foundation Completion
 
 The approved foundation is already implemented in the codebase. Nothing in the architecture changes. What remains is the final connection step plus end-to-end verification and the requested report.
 
@@ -24,11 +24,11 @@ Typecheck passes. An unauthenticated visit to `/dashboard` correctly redirects t
 
 1. Insert the publishable key into the connection config (single-line change, no architecture change). It is a publishable value, safe in client code; RLS remains the access boundary.
 2. Verify end to end against the live project:
-   - sign in with a real account
-   - confirm `workspace_members` + `workspaces` resolution and the selector when more than one active membership exists
-   - load each of the 13 routes and confirm honest empty states rather than crashes
-   - confirm `/boost` reads `conversations`, `agent_runs`, `agent_tasks`, `approvals` without inventing rows
-   - confirm sign-out clears cache and returns to `/auth`
+  - sign in with a real account
+  - confirm `workspace_members` + `workspaces` resolution and the selector when more than one active membership exists
+  - load each of the 13 routes and confirm honest empty states rather than crashes
+  - confirm `/boost` reads `conversations`, `agent_runs`, `agent_tasks`, `approvals` without inventing rows
+  - confirm sign-out clears cache and returns to `/auth`
 3. Report: files created, files modified, Supabase objects accessed, tests performed, exact results, errors and warnings, and anything left in the foundation.
 
 No new tables, no migrations, no seeding, no orchestrator, no agents, no automations.
