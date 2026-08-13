@@ -3,7 +3,8 @@ import { AlertTriangle, Loader2 } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { EmptyState, ErrorState } from "@/components/common/States";
-import type { Result, Row } from "./types";
+import type { Result } from "@/lib/result";
+import type { Row } from "@/services/boost.service";
 
 export function ActivityPanel({
   title,
