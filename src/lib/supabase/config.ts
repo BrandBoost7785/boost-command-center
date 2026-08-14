@@ -7,8 +7,7 @@
 
 const FALLBACK_URL = "https://qkejynibmcsgjvburgig.supabase.co";
 
-// Replace PUBLISHABLE_KEY with the project's anon / publishable key.
-const FALLBACK_PUBLISHABLE_KEY = "";
+const FALLBACK_PUBLISHABLE_KEY = "sb_publishable_e7OMob4QugI_j7yYrdPBKA_VFbFoKew";
 
 export const SUPABASE_URL =
   (import.meta.env["VITE_SUPABASE_URL"] as string | undefined) || FALLBACK_URL;
