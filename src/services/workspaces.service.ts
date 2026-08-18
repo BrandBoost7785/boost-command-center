@@ -10,7 +10,7 @@ export async function fetchActiveMemberships(userId: string): Promise<Membership
   const rows = await queryOrThrow<WorkspaceMembershipRow[]>(() =>
     supabase
       .from("workspace_members")
-      .select("id, workspace_id, user_id, role, status, workspaces(*)")
+      .select("workspace_id, user_id, role, status, workspaces(*)")
       .eq("user_id", userId)
       .eq("status", "active")
       .returns<WorkspaceMembershipRow[]>(),
@@ -19,7 +19,7 @@ export async function fetchActiveMemberships(userId: string): Promise<Membership
   return (rows ?? [])
     .filter((row) => row.workspaces && row.workspaces.status === "active")
     .map((row) => ({
-      membershipId: row.id,
+      membershipId: `${row.workspace_id}:${row.user_id}`,
       role: row.role,
       workspace: row.workspaces!,
     }))
