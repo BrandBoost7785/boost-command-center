@@ -16,11 +16,14 @@ export interface Workspace {
 }
 
 export interface WorkspaceMember {
-  id: string;
   workspace_id: string;
   user_id: string;
   role: string | null;
   status: string | null;
+  joined_at?: string | null;
+  invited_by?: string | null;
+  created_at?: string | null;
+  updated_at?: string | null;
 }
 
 export interface WorkspaceMembershipRow extends WorkspaceMember {
